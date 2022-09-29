@@ -8,22 +8,20 @@ import static org.testng.Assert.assertEquals;
 
 public class UserSteps {
     private WebDriver driver;
-    private LoginPage loginPage;
     private MainPage mainPage;
 
     public UserSteps(WebDriver driver) {
         this.driver = driver;
     }
 
-    public com.example.selenium.steps.UserSteps login(String username, String password) {
-        loginPage = new LoginPage(driver);
+    public void login(String username, String password) {
+        LoginPage loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
 
         loginPage.setUsername(username).setPassword(password).clickLogin();
 
         assertEquals(mainPage.getTitle(), "Secure Area", "Login Failed");
 
-        return this;
     }
 
     public void logout() {
